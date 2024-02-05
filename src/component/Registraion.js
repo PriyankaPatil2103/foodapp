@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { register } from "../reduxwork/UserSlice";
+import { useDispatch } from "react-redux";
 
 function Registraion() {
   const [CustomerName, setCustomername] = useState();
@@ -9,6 +11,8 @@ function Registraion() {
   const [CustomerAddress, setCustomeraddress] = useState();
   const [CustomerPassword, setCustomerpassword] = useState();
   const [CustomerCity, setCustomercity] = useState();
+
+  const dispathcer = useDispatch();
 
   const addCust = () => {
     const cust = {
@@ -24,8 +28,10 @@ function Registraion() {
       .post("http://localhost:5000/api/addcustomer", cust)
       .then((result) => {
         console.log("DATA", result.data);
+
         alert("Registration Success");
-        window.location.reload(false);
+        dispathcer(register(result.data));
+        //window.location.reload(false);
       })
       .catch((err) => {
         console.log(err);

@@ -2,23 +2,27 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { login } from "../reduxwork/UserSlice";
+import { useDispatch } from "react-redux";
 
 function Login() {
+  const dispatcher = useDispatch();
   const [CustomerEmail, setCustomeremail] = useState("");
   const [CustomerPassword, setCustomerpassword] = useState("");
   const navi = useNavigate();
 
   const addlogin = () => {
-    const login = {
+    const logindata = {
       CustomerEmail: CustomerEmail,
       CustomerPassword: CustomerPassword,
     };
     axios
-      .post("http://localhost:5000/api/dologin", login)
+      .post("http://localhost:5000/api/dologin", logindata)
       .then((result) => {
         console.log("DATA", result.data);
         if (result.data.success) {
-          alert("Login Successfully");
+          dispatcher(login(result.data.data))
+          //alert("Login Successfully");
           navi("/");
         } else {
           alert("Login Fail");
@@ -51,7 +55,7 @@ function Login() {
               ></Form.Control>
             </Form.Group>
 
-           <Form.Group>
+            <Form.Group>
               <Button onClick={() => addlogin()}>Login</Button>
             </Form.Group>
           </Form>
