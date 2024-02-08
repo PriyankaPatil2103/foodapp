@@ -1,0 +1,13 @@
+.card{
+    height: 500px;
+    width: 300px;
+    margin-top: 50px;
+}
+.home{
+    background-color: rgba(183,221,232,0.204);
+    padding: 50px;
+}
+.content{
+    margin-top: 20px;
+    text-align: center;
+}
