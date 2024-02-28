@@ -1,8 +1,10 @@
 import React from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 function MyNavbar() {
+  const { ItemCount } = useSelector((state) => state.cart);
   return (
     <div>
       <Navbar collapseOnSelect variant="dark" bg="dark" expand="lg">
@@ -27,7 +29,13 @@ function MyNavbar() {
                 <Link to="/Myorders">MyOrders</Link>
               </Nav.Link>
               <Nav.Link>
-                <Link to="/Cart">Cart</Link>
+                <Link to="/OrderDetails">OrderDetails</Link>
+              </Nav.Link>
+              <Nav.Link>
+                <Link to="/Order">Order</Link>
+              </Nav.Link>
+              <Nav.Link>
+                <Link to="/Cart">Cart {ItemCount}</Link>
               </Nav.Link>
               <Nav.Link>
                 <Link to="/Login">Login</Link>

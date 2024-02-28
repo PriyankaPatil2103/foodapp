@@ -1,9 +1,11 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, Row ,Image} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { login } from "../reduxwork/UserSlice";
 import { useDispatch } from "react-redux";
+import pizza from '../images/pizza.jpg';
+
 
 function Login() {
   const dispatcher = useDispatch();
@@ -37,6 +39,7 @@ function Login() {
     <div>
       <Container>
         <Row>
+          <Col>
           <Form>
             <Form.Group>
               <Form.Label>Customer Email</Form.Label>
@@ -59,14 +62,11 @@ function Login() {
               <Button onClick={() => addlogin()}>Login</Button>
             </Form.Group>
           </Form>
-        </Row>
-        <Row>
-          <Col>
-            <h3>{CustomerEmail}</h3>
           </Col>
           <Col>
-            <h3>{CustomerPassword}</h3>
+          <Image src={pizza}></Image>
           </Col>
+         
         </Row>
       </Container>
     </div>

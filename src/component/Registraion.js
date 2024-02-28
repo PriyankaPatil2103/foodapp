@@ -1,8 +1,9 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, Row , Image } from "react-bootstrap";
 import { register } from "../reduxwork/UserSlice";
 import { useDispatch } from "react-redux";
+import bbc from '../images/bbc.jpg'
 
 function Registraion() {
   const [CustomerName, setCustomername] = useState();
@@ -42,6 +43,7 @@ function Registraion() {
       <Form>
         <Container>
           <Row>
+            <Col>
             <Form.Group>
               <Form.Label>Customer Name</Form.Label>
               <Form.Control
@@ -95,22 +97,9 @@ function Registraion() {
             <Form.Group>
               <Button onClick={() => addCust()}>Register</Button>
             </Form.Group>
-          </Row>
-          <Row>
-            <Col>
-              <h4>{CustomerName}</h4>
             </Col>
             <Col>
-              <h4>{CustomerEmail}</h4>
-            </Col>
-            <Col>
-              <h4>{CustomerMobileNo}</h4>
-            </Col>
-            <Col>
-              <h4>{CustomerAddress}</h4>
-            </Col>
-            <Col>
-              <h4>{CustomerPassword}</h4>
+              <Image src={bbc}/>
             </Col>
           </Row>
         </Container>

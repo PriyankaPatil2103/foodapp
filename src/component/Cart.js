@@ -1,13 +1,14 @@
 import React from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { clearCart, decrementQty, incrementQty } from "../reduxwork/CartSlice";
+import { calculateTotal, clearCart, decrementQty, incrementQty } from "../reduxwork/CartSlice";
 import axios from "axios";
 
 function Cart() {
-  const { CartItems } = useSelector((state) => state.cart);
+  const { CartItems , CartTotalAmt} = useSelector((state) => state.cart);
   const { UserData } = useSelector((state) => state.user);
   const dispatcher = useDispatch();
+  dispatcher(calculateTotal())
 
   const addOrder = () => {
     const finalItems = [];
@@ -29,6 +30,7 @@ function Cart() {
       .post("http://localhost:5000/api/addorder", orderData)
       .then((result) => {
         alert("Order Placed");
+        console.log(result.data)
         dispatcher(clearCart());
       })
       .catch((err) => {
@@ -68,6 +70,7 @@ function Cart() {
             );
           })}
         </Row>
+        <Col><h4>Total:{CartTotalAmt}</h4></Col>
         <Button onClick={() => addOrder()}>Place Order</Button>
       </Container>
     </div>
